@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EDUSPHERE – Smart Learning for Every Student</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Poppins Font -->
+  <link href="apperance.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #81cbee;
+      --secondary: #223042;
+      --accent: #fff;
+      --dark-accent: #edf6fb;
+      --card-shadow: 0 2px 16px 0 #00000011;
+      --radius: 16px;
+      --font-main: 'Poppins', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: var(--font-main);
+      color: var(--secondary);
+      background: var(--dark-accent);
+      margin: 0;
+      line-height: 1.6;
+    }
+    header {
+      background: var(--primary);
+      padding: 0.9rem 0;
+      box-shadow: var(--card-shadow);
+    }
+    nav {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap:1rem;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: 0.05em;
+      color: var(--secondary);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: var(--secondary);
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--secondary);
+      color: var(--accent);
+    }
+    .container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 2rem 1rem 0 1rem;
+    }
+    #hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--primary);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      margin-top: 2rem;
+      padding: 2.5rem 1.5rem 3rem 1.5rem;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 280px;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      margin-bottom: 2.2rem;
+    }
+    .cta {
+      padding: 0.9rem 2.2rem;
+      background: var(--secondary);
+      color: var(--accent);
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1.17rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #00000013;
+      letter-spacing: 0.01em;
+      transition: background .18s;
+    }
+    .cta:hover {
+      background: #14202b;
+    }
+    .hero-img {
+      flex: 1;
+      min-width: 260px;
+      text-align: center;
+    }
+    .hero-img img {
+      width: 95%;
+      max-width: 340px;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      margin-top: 1.5rem;
+    }
+
+    /* Section Headings */
+    section {
+      margin-top: 4rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 2rem;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* Highlights Row */
+    .highlights {
+      display: flex;
+      gap: 1.4rem;
+      justify-content: center;
+      margin-top: -2.4rem;
+      margin-bottom: 1.5rem;
+      z-index: 9;
+      flex-wrap: wrap;
+    }
+    .highlight-card {
+      background: var(--accent);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 1.1rem 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      min-width: 160px;
+      justify-content: center;
+      letter-spacing: .01em;
+    }
+    .highlight-card span {
+      font-size: 1.2rem;
+    }
+
+    /* Courses Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+    }
+    .course-card {
+      background: var(--accent);
+      padding: 2rem 1.2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      align-items: center;
+    }
+    .course-card img {
+      width:60px; height:60px; object-fit:cover;
+      border-radius:8px; margin-bottom:.7rem;
+      background: #f2fbff;
+    }
+    .course-card h3 { font-size: 1.15rem; font-weight: 600; }
+    .course-card p { color: #555; font-size: 0.98rem; }
+    .course-card button {
+      background: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.6rem 1.3rem;
+      cursor: pointer;
+      margin-top: .7rem;
+      box-shadow:0 2px 8px #00000007;
+      transition: background .17s;
+    }
+    .course-card button:hover {
+      background:#a3d9f7;
+    }
+
+    /* Teacher Cards */
+    .teacher-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.8rem;
+      justify-content: center;
+    }
+    .teacher-card {
+      background: var(--accent);
+      padding: 1.7rem 1rem;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .teacher-card img {
+      border-radius: 50%;
+      width:60px; height:60px; object-fit:cover;
+      margin-bottom:.2rem; background: #d1efff;
+    }
+    .teacher-card h4 { font-size:1.04rem; font-weight: 700; margin:.2rem 0; }
+    .teacher-card p { font-size:.96rem; color:#555; }
+    .teacher-card .subject { color:#2ca3d1; font-weight:600; }
+
+    /* Testimonials */
+    .testimonial-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.3rem;
+      justify-content: center;
+    }
+    .testimonial-card {
+      background: var(--accent);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      padding: 1.3rem 1.3rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      min-height:185px;
+    }
+    .testimonial-card img {
+      border-radius: 50%;
+      width:52px; height:52px; object-fit:cover; background:#f2fbff;
+    }
+    .testimonial-card .quote {
+      font-style: italic;
+      font-size: 1.01rem;
+      margin: .7rem 0;
+      color:#222;
+    }
+    .testimonial-card .stars {
+      color: #fec947;
+      font-size: 1.08em;
+    }
+    .testimonial-card .name { font-weight:600; color:#2ca3d1;}
+
+    /* Pricing Cards and Table */
+    .pricing-section {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom:2rem;
+    }
+    .pricing-card {
+      min-width: 260px;
+      background: var(--accent);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      padding: 2rem 1.2rem 1.2rem 1.2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      border-top: 4px solid var(--primary);
+    }
+    .pricing-card h3 { font-size: 1.25rem; font-weight: 700;}
+    .pricing-card p { font-size: 1.04rem; color:#2ca3d1;}
+    .pricing-card ul {list-style: none; padding:0; font-size:.98rem; color: #555;}
+    .pricing-card ul li {padding: .2rem 0;}
+    .pricing-card button {
+      background: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.6rem 1.3rem;
+      cursor: pointer;
+      margin-top: .7rem;
+      box-shadow:0 2px 8px #00000007;
+      transition: background .17s;
+    }
+    .pricing-card button:hover { background:#a3d9f7;}
+
+    .features-table {
+      width: 100%;
+      border-spacing: 0;
+      background: var(--accent);
+      border-radius: 8px;
+      margin-top: 2.2rem;
+      margin-bottom:1rem;
+      box-shadow: var(--card-shadow);
+      font-size:0.99rem;
+    }
+    .features-table th, .features-table td {
+      padding: 0.7em 0.9em;
+      text-align: center;
+      border-bottom: 1px solid #dee5ea;
+    }
+    .features-table th {
+      background: var(--primary);
+      color: var(--secondary);
+      font-weight: 600;
+      border-radius:8px;
+    }
+    .features-table td:last-child, .features-table th:last-child {
+      border-right: 0;
+    }
+
+    /* About Us & Icons */
+    .about-us-box {
+      background: var(--accent);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2.2rem;
+      max-width: 710px;
+      margin-left: auto; margin-right: auto;
+    }
+    .icons-group {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: stretch;
+      margin-top: 2.2rem;
+      flex-wrap: wrap;
+    }
+    .icon-card {
+      width: 120px;
+      background: var(--primary);
+      border-radius: 13px;
+      padding: 1.3rem 0.6rem 1.1rem 0.6rem;
+      font-weight: 600;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      color: var(--secondary);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:.6rem;
+      font-size:1.03rem;
+    }
+    .icon-card .icon-img {
+      font-size:2rem;
+      margin-bottom:.2rem;
+    }
+    .icon-card span {font-size:1.05rem;}
+
+    /* Contact */
+    .contact-box {
+      background: var(--accent);
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 520px;
+      margin: 2rem auto;
+      box-shadow: var(--card-shadow);
+    }
+    .contact-form label {
+      display: block;
+      font-weight: 600;
+      margin-top: 1.2rem;
+      margin-bottom: 0.4rem;
+      font-size:.97rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid #b8dfee;
+      border-radius: 7px;
+      padding: 0.8rem;
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      background: var(--dark-accent);
+      font-family: inherit;
+    }
+    .contact-form textarea { resize: vertical; min-height: 100px;}
+    .contact-form button {
+      background: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: 6px;
+      padding: 0.9rem 1.7rem;
+      font-weight: 600;
+      margin-top: 0.7rem;
+      cursor: pointer;
+      font-size: 1.03rem;
+      box-shadow:0 2px 8px #00000007;
+      transition: background .19s;
+    }
+    .contact-form button:hover { background:#a3d9f7;}
+    .map-placeholder {
+      background: #e3eaf3;
+      height: 190px;
+      width: 100%;
+      border-radius: 14px;
+      margin: 1.5rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #797d88;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .support-contact {
+      text-align: center;
+      margin: 1.7rem 0;
+      font-size: 1.07rem;
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      text-align: center;
+      font-size: 1rem;
+      color: var(--secondary);
+      padding: 1.3rem 0;
+      margin-top: 3rem;
+      border-top:1px solid #c6e8f7;
+    }
+
+    @media(max-width: 900px) {
+      .container, .about-us-box, .contact-box { padding:1rem;}
+      .pricing-section, .icons-group { gap:1.2rem;}
+      #hero { flex-direction:column; gap:0; padding:1.2rem;}
+      .highlight-card { min-width:140px;}
+    }
+    @media(max-width: 650px) {
+      .nav-links { flex-direction: column; gap:0.5rem;}
+      .teacher-row, .grid, .testimonial-row { grid-template-columns:1fr;}
+      .pricing-section { flex-direction:column; gap:1rem;}
+      .icons-group { flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">EDUSPHERE</div>
+    <div class="nav-links">
+      <a href="#hero" class="active">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#teachers">Teachers</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#features">Features</a>
+      <a href="#comparison">Comparison</a>
+      <a href="#demo">Demo</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+<main class="container">
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-title">Smart Learning for Every Student</div>
+      <div class="hero-desc">Personalized education, live classes, and expert mentorship for your success. Experience top-notch teaching and streamlined doubt solving—all at affordable prices.</div>
+      <a href="#contact"><button class="cta">Join Now</button></a>
+    </div>
+    <div class="hero-img hologram">
+      <img src="https://via.placeholder.com/340x210?text=AI+Virtual+Mentor" alt="AI Virtual Mentor Banner">
+    </div>
+  </section>
+  <div class="highlights">
+    <div class="highlight-card"><span>🎥</span> Live Classes</div>
+    <div class="highlight-card"><span>🧑‍🏫</span> Top Faculty</div>
+    <div class="highlight-card"><span>💬</span> Doubt Solving</div>
+    <div class="highlight-card"><span>💸</span> Affordable Courses</div>
+  </div>
+
+  <!-- Offline/Rural Access Highlight -->
+  <div class="offline-highlight">
+    <h3>🌍 Strong Offline & Rural Access</h3>
+    <p>Download lessons and practice offline—perfect for low-connectivity areas and rural students.</p>
+  </div>
+
+  <!-- Gamification Highlights -->
+  <div class="gamification-section">
+    <div class="gamification-badge">🏆 Badge Master</div>
+    <div class="gamification-badge">🔥 7-Day Streak</div>
+    <div class="gamification-badge">⭐ Top Scorer</div>
+  </div>
+
+  <!-- Courses -->
+  <section id="courses">
+    <div class="section-title">Popular Courses</div>
+    <div class="grid">
+      <div class="course-card">
+        <img src="https://via.placeholder.com/60?text=JEE" alt="JEE Course">
+        <h3>JEE Preparation</h3>
+        <p>Crack IIT-JEE with expert strategies and interactive live classes.</p>
+        <button>Enroll Now</button>
+      </div>
+      <div class="course-card">
+        <img src="https://via.placeholder.com/60?text=NEET" alt="NEET Course">
+        <h3>NEET Prep</h3>
+        <p>Master Biology, Chemistry, and Physics. Succeed in NEET with guided mentorship!</p>
+        <button>Enroll Now</button>
+      </div>
+      <div class="course-card">
+        <img src="https://via.placeholder.com/60?text=UPSC" alt="UPSC Course">
+        <h3>UPSC Coaching</h3>
+        <p>Comprehensive civils guidance—from current affairs to answer writing.</p>
+        <button>Enroll Now</button>
+      </div>
+      <div class="course-card">
+        <img src="https://via.placeholder.com/60?text=6-12" alt="Class 6-12 Course">
+        <h3>Classes 6-12</h3>
+        <p>Build strong fundamentals for school boards and olympiad excellence.</p>
+        <button>Enroll Now</button>
+      </div>
+      <div class="course-card">
+        <img src="https://via.placeholder.com/60?text=Coding" alt="Coding Course">
+        <h3>Coding Bootcamp</h3>
+        <p>Python, Java, web development, and more. Coding for all ages.</p>
+        <button>Enroll Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teachers -->
+  <section id="teachers">
+    <div class="section-title">Meet Our Teachers</div>
+    <div class="teacher-row">
+      <div class="teacher-card">
+        <img src="https://via.placeholder.com/60?text=AB" alt="Teacher A">
+        <h4>Dr. Ananya Bose</h4>
+        <div class="subject">Physics</div>
+        <p>Passionate about simplifying physics with 10+ years teaching experience.</p>
+      </div>
+      <div class="teacher-card">
+        <img src="https://via.placeholder.com/60?text=KS" alt="Teacher B">
+        <h4>Mr. Ketan Shah</h4>
+        <div class="subject">Mathematics</div>
+        <p>Expert in JEE-level math mentoring students to top ranks and gold medals.</p>
+      </div>
+      <div class="teacher-card">
+        <img src="https://via.placeholder.com/60?text=SP" alt="Teacher C">
+        <h4>Ms. Sneha Patel</h4>
+        <div class="subject">Chemistry</div>
+        <p>NEET Chemistry specialist, makes the hardest topics fun and easy.</p>
+      </div>
+      <div class="teacher-card">
+        <img src="https://via.placeholder.com/60?text=RD" alt="Teacher D">
+        <h4>Mr. Rajiv Das</h4>
+        <div class="subject">Coding</div>
+        <p>Software developer turned instructor—coding for all age groups.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="section-title">Student Testimonials</div>
+    <div class="testimonial-row">
+      <div class="testimonial-card">
+        <img src="https://via.placeholder.com/52?text=Student+1" alt="Student 1">
+        <div class="quote">“EDUSPHERE's live doubt sessions helped me crack NEET!”</div>
+        <div class="stars">★★★★★</div>
+        <div class="name">Priya Singh</div>
+      </div>
+      <div class="testimonial-card">
+        <img src="https://via.placeholder.com/52?text=Student+2" alt="Student 2">
+        <div class="quote">“The teachers are awesome—every concept is clear and simple.”</div>
+        <div class="stars">★★★★★</div>
+        <div class="name">Amit Kumar</div>
+      </div>
+      <div class="testimonial-card">
+        <img src="https://via.placeholder.com/52?text=Student+3" alt="Student 3">
+        <div class="quote">“Best online courses for school subjects—easy and affordable!”</div>
+        <div class="stars">★★★★☆</div>
+        <div class="name">Sara Mehra</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parent Dashboard UI -->
+  <section id="parent-dashboard">
+    <div class="section-title">Parent Dashboard</div>
+    <div class="dashboard-mockup">
+      <img src="https://via.placeholder.com/400x250?text=Parent+Dashboard+UI" alt="Parent Dashboard Mockup">
+      <p>Monitor progress, set goals, and receive detailed reports on your child's learning journey.</p>
+    </div>
+  </section>
+
+  <!-- Multilingual Badges -->
+  <section id="multilingual">
+    <div class="section-title">Multilingual Support</div>
+    <div class="badges-row">
+      <span class="multilingual-badge">English</span>
+      <span class="multilingual-badge">Hindi</span>
+      <span class="multilingual-badge">Tamil</span>
+      <span class="multilingual-badge">Telugu</span>
+      <span class="multilingual-badge">Bengali</span>
+      <span class="multilingual-badge">Marathi</span>
+    </div>
+    <p>Content available in multiple regional languages to ensure inclusivity and accessibility for all students.</p>
+  </section>
+
+
+
+  <!-- Features Section -->
+  <section id="features">
+    <div class="section-title">Features</div>
+    <div class="grid-2 feature-grid">
+      <article class="feature card hologram" tabindex="0">
+        <h3>🎯 Personalized Learning</h3>
+        <p>Adaptive lessons and progress tracking that tailor to each student's pace.</p>
+      </article>
+      <article class="feature card" tabindex="0">
+        <h3>🏆 Gamification</h3>
+        <p>Points, badges, leaderboards and streaks to encourage regular learning.</p>
+      </article>
+      <article class="feature card hologram" tabindex="0">
+        <h3>📴 Offline Access</h3>
+        <p>Download lessons and practice offline for low-connectivity areas.</p>
+      </article>
+      <article class="feature card" tabindex="0">
+        <h3>❓ Doubt Solving</h3>
+        <p>Ask questions and get step-by-step explanations from tutors and community.</p>
+      </article>
+      <article class="feature card" tabindex="0">
+        <h3>👪 Parent Dashboard</h3>
+        <p>Monitor progress, set goals, and receive reports on student activity.</p>
+      </article>
+      <article class="feature card" tabindex="0">
+        <h3>🌐 Multilingual Support</h3>
+        <p>Content available in multiple regional languages to widen access.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section id="comparison">
+    <div class="section-title">Comparison</div>
+    <p class="lead">How EDUSPHERE stacks up against popular platforms.</p>
+    <div class="table-wrap">
+      <table class="comparison" aria-label="Platform comparison">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="highlight">EDUSPHERE</th>
+            <th>PW</th>
+            <th>Byju's</th>
+            <th>Unacademy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Affordable</td>
+            <td class="highlight">✔</td>
+            <td>✘</td>
+            <td>✘</td>
+            <td>✘</td>
+          </tr>
+          <tr>
+            <td>Personalized</td>
+            <td class="highlight">✔</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>✔</td>
+          </tr>
+          <tr>
+            <td>Gamified</td>
+            <td class="highlight">✔</td>
+            <td>✘</td>
+            <td>✘</td>
+            <td>✔</td>
+          </tr>
+          <tr>
+            <td>Offline Access</td>
+            <td class="highlight">✔</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>✔</td>
+          </tr>
+          <tr>
+            <td>Parent Dashboard</td>
+            <td class="highlight">✔</td>
+            <td>✘</td>
+            <td>✔</td>
+            <td>✘</td>
+          </tr>
+          <tr>
+            <td>AI Virtual Mentor</td>
+            <td class="highlight">✔</td>
+            <td>✘</td>
+            <td>✘</td>
+            <td>✘</td>
+          </tr>
+          <tr>
+            <td>Hologram/AR</td>
+            <td class="highlight">✔</td>
+            <td>✘</td>
+            <td>✘</td>
+            <td>✘</td>
+          </tr>
+          <tr>
+            <td>Multilingual</td>
+            <td class="highlight">✔</td>
+            <td>✔</td>
+            <td>✔</td>
+            <td>✔</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section id="demo">
+    <div class="section-title">Demo Visuals</div>
+    <div class="grid-2">
+      <div class="demo-card hologram">
+        <img src="https://via.placeholder.com/300x180?text=AI+Virtual+Mentor" alt="AI Virtual Mentor" />
+        <p>AI-powered virtual mentor for personalized guidance.</p>
+      </div>
+      <div class="demo-card hologram">
+        <img src="https://via.placeholder.com/300x180?text=Hologram+AR" alt="Hologram AR Mockup" />
+        <p>Immersive hologram and AR experiences for interactive learning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section id="about">
+    <div class="section-title">About Us</div>
+    <div class="about-us-box">
+      <p><strong>Our Mission:</strong> Empower every student with high-quality, affordable learning from India's best teachers—so everyone achieves their goals.</p>
+      <p><strong>Vision:</strong> Make digital education universal, engaging, and success-driven.</p>
+    </div>
+    <div class="section-title" style="font-size:1.3rem;margin-bottom:.3em;">Why Choose Us?</div>
+    <div class="icons-group">
+      <div class="icon-card">
+        <div class="icon-img">🎯</div>
+        <span>Focused Learning</span>
+      </div>
+      <div class="icon-card">
+        <div class="icon-img">👩‍🏫</div>
+        <span>Top Faculty</span>
+      </div>
+      <div class="icon-card">
+        <div class="icon-img">💡</div>
+        <span>Innovation</span>
+      </div>
+      <div class="icon-card">
+        <div class="icon-img">🎓</div>
+        <span>Student Success</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-title">Contact Us</div>
+    <div class="contact-box">
+      <form class="contact-form">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Your Name" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="Your Email" required>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="support-contact">
+        <p>Or reach us at:abhinav3289@gmail.com or +91-7209871241</p>
+      </div>
+    </div>
+  </section>
